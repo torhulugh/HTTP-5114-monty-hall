@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #contStay {
+        color: rgb(5, 190, 5);
+      }
+      #contLeave {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The Monthy Hall Problem</h1>
+
+    <script>
+      var countStay = 0;
+      var countLeave = 0;
+      for (let i = 0; i < 10; i++) {
+        // create a variable to store car position
+        var car = Math.ceil(Math.random() * 3);
+        document.write("<p>The car is behind door number " + car + "</p>");
+
+        // create a variable to store the contenstant choice
+        var choice = Math.ceil(Math.random() * 3);
+        document.write(
+          "<p>The contestant chose door number " + choice + "</p>"
+        );
+
+        // the host opens a door
+        // var remove = Math.ceil(Math.random() * 3)
+        // document.write("<p>The host removes door number " + remove + "</p>")
+
+        // while (remove ==car || remove == choice) {
+        //     remove = Math.ceil(Math.random() * 3)
+        // }
+
+        do {
+          var remove = Math.ceil(Math.random() * 3);
+        } while (remove == car || remove == choice);
+
+        document.write("<p>The host removes door number " + remove + "</p>");
+
+        //check the correct answer
+        if (choice == car) {
+          countStay++;
+          document.write("<p id='contStay'>The contestant should STAY</p>");
+        } else {
+          countLeave++;
+          document.write("<p id='contLeave'>The contestant should SWITCH</p>");
+        }
+      }
+
+      var percent = ((countStay / 10) * 100).toFixed(2);
+      document.write("<h1>Stay is correct " + percent + "% of the time</h1>");
+    </script>
+  </body>
+</html>
